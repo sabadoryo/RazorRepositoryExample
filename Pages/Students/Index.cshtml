@@ -1,0 +1,55 @@
+﻿@page
+@model RazorPagesStudent.Pages.Students.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<form>
+    <p>
+        Code: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Find" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Student[0].name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student[0].birthDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student[0].groupNumber)
+            </th>
+       
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Student) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.birthDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.groupNumber)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
