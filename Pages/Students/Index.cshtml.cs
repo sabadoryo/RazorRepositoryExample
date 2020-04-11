@@ -31,7 +31,10 @@ namespace RazorPagesStudent.Pages.Students
 
             if (!string.IsNullOrEmpty(SearchString))
             {
-                students = students.Where(s => s.name.Contains(SearchString));
+                students = students.Where(s => s.name.Substring(0,1).Contains(SearchString.Substring(0,1)) 
+                && s.name.Substring(s.name.Length-1,1).Contains(SearchString.Substring(1, 1)) 
+                && s.birthDay.Year.ToString().Substring(2,2).Contains(SearchString.Substring(2,2))
+                && s.groupNumber.ToString().Contains(SearchString.Substring(4,4)));
             }
 
             Student = await students.ToListAsync();
